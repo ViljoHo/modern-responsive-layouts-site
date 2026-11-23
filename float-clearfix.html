@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clearfix</title>
+  <style>
+
+  body {
+    margin: 0;
+    padding: 2em 0 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ed;
+    color: #222;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .page-header {
+    margin-bottom: 1.5em;
+    padding-bottom: 1em;
+    text-align: center;
+    border-bottom: 0.125em solid #222;
+  }
+
+  .page-header h1 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 3.5em;
+    letter-spacing: -0.04em;
+  }
+
+  .page-header p {
+    margin: 0.4em 0 0;
+    font-size: 0.8em;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #a13b25;
+  }
+
+  .site-footer {
+    margin-top: 2em;
+    padding: 3em 0;
+    text-align: center;
+    border-top: 0.125em solid #222;
+  }
+
+  .site-footer p {
+    margin: 0.5em 0 0;
+    font-size: 0.85em;
+    color: #777;
+  }
+
+  .site-footer a {
+    text-decoration: underline;
+  }
+
+
+  /* Layout: page width, demo titles, rows */
+  .page-header,
+  .newspaper,
+  .site-footer {
+    width: 60em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  .demo-title {
+    margin: 0 1% 0.5em;
+    font-family: Courier, monospace;
+    font-size: 1.1em;
+  }
+
+  /* only pushes the second demo below the uncleared floats of the first */
+  .demo-title.second {
+    clear: both;
+    padding-top: 2em;
+  }
+
+  .row {
+    padding: 0.5em 0;
+    border: 0.25em solid #333;
+  }
+
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .tile {
+    float: left;
+    width: 31.333%;
+    margin: 0 1%;
+  }
+
+  .tile img {
+    display: block;
+    width: 100%;
+  }
+
+  .tile-content {
+    padding: 1em;
+    background: #fff;
+  }
+
+  .category {
+    display: block;
+    margin-bottom: 0.6em;
+    font-size: 0.7em;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    color: #a13b25;
+  }
+
+  .tile h2 {
+    margin: 0 0 0.5em;
+    font-family: Georgia, serif;
+    font-size: 1.25em;
+    line-height: 1.2;
+  }
+
+  .tile p {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: #666;
+  }
+
+  </style>
+</head>
+
+<body>
+
+  <header class="page-header">
+    <h1>G1 Newspaper</h1>
+    <p>Clearfix</p>
+  </header>
+
+  <main class="newspaper">
+    <h2 class="demo-title">Without clearfix</h2>
+    <div class="row">
+    <article class="tile">
+      <img src="assets/img/mountain-lake.jpg" alt="Turquoise Mountain Lake with a Wooden Boat" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=800&fit=crop&q=80'">
+      <div class="tile-content">
+        <span class="category">TRAVEL</span>
+        <h2>Turquoise Mountain Lake with a Wooden Boat</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </article>
+    <article class="tile">
+      <img src="assets/img/city-street.jpg" alt="Busy City Street Between Tall Skyscrapers" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&h=800&fit=crop&q=80'">
+      <div class="tile-content">
+        <span class="category">ARCHITECTURE</span>
+        <h2>Busy City Street Between Tall Skyscrapers</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat, augue vitae volutpat, nisl augue luctus tortor.</p>
+      </div>
+    </article>
+    <article class="tile">
+      <img src="assets/img/forest-path.jpg" alt="Dirt Path Through a Sunlit Forest" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=800&fit=crop&q=80'">
+      <div class="tile-content">
+        <span class="category">ENVIRONMENT</span>
+        <h2>Dirt Path Through a Sunlit Forest</h2>
+        <p>Nulla facilisi, cras non velit nec nisi vulputate.</p>
+      </div>
+    </article>
+    </div>
+
+    <h2 class="demo-title second">With clearfix</h2>
+    <div class="row clearfix">
+    <article class="tile">
+      <img src="assets/img/city-skyline.jpg" alt="Downtown Skyline Along the Lakeshore" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&h=800&fit=crop&q=80'">
+      <div class="tile-content">
+        <span class="category">CULTURE</span>
+        <h2>Downtown Skyline Along the Lakeshore</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio, praesent libero. Sed cursus ante dapibus.</p>
+      </div>
+    </article>
+    <article class="tile">
+      <img src="assets/img/mountain-clouds.jpg" alt="Mountain Peaks Above a Sea of Clouds at Sunrise" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&q=80'">
+      <div class="tile-content">
+        <span class="category">ADVENTURE</span>
+        <h2>Mountain Peaks Above a Sea of Clouds at Sunrise</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi, cras non velit nec nisi.</p>
+      </div>
+    </article>
+    <article class="tile">
+      <img src="assets/img/coffee-toast.jpg" alt="Friends Toasting with Cups of Latte" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&h=800&fit=crop&q=80'">
+      <div class="tile-content">
+        <span class="category">LIFESTYLE</span>
+        <h2>Friends Toasting with Cups of Latte</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
+      </div>
+    </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Group 1 &middot; Information Architecture &amp; Web Usability 26/27.</p>
+    <p>Photos from <a href="https://unsplash.com">Unsplash</a>, used under the <a href="https://unsplash.com/license">Unsplash License</a>.</p>
+  </footer>
+
+
+</body>
+</html>

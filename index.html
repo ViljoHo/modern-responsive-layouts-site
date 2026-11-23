@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modern Responsive Layouts</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2em 2% 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f2ed;
+      color: #222;
+    }
+
+    .page-header,
+    .sections,
+    .site-footer {
+      width: 100%;
+      max-width: 60em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .page-header {
+      margin-bottom: 1.5em;
+      padding-bottom: 1em;
+      text-align: center;
+      border-bottom: 0.125em solid #222;
+    }
+
+    .page-header h1 {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: 3.5em;
+      letter-spacing: -0.04em;
+    }
+
+    .page-header p {
+      margin: 0.4em 0 0;
+      font-size: 0.8em;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a13b25;
+    }
+
+    .sections h2 {
+      margin: 2em 0 0.5em;
+      font-size: 0.8em;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a13b25;
+    }
+
+    .sections ul {
+      margin: 0;
+      padding-left: 1.5em;
+    }
+
+    .sections li {
+      margin-bottom: 0.9em;
+      line-height: 1.5;
+    }
+
+    .sections li p {
+      margin: 0.1em 0 0;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    .site-footer {
+      margin-top: 2em;
+      padding: 3em 0;
+      text-align: center;
+      border-top: 0.125em solid #222;
+    }
+
+    .site-footer p {
+      margin: 0.5em 0 0;
+      font-size: 0.85em;
+      color: #777;
+    }
+
+    @media (width <= 40em) {
+      .page-header h1 {
+        font-size: 2.5em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="page-header">
+    <h1>Modern Responsive Layouts</h1>
+    <p>Example pages</p>
+  </header>
+
+  <main class="sections">
+    <h2>Float</h2>
+    <ul>
+      <li>
+        <a href="float-clear.html">Float and Clear</a>
+        <p>Shows how the float and clear properties work.</p>
+      </li>
+      <li>
+        <a href="float-clearfix.html">Clearfix</a>
+        <p>Shows how a clearfix affects the placement of the elements.</p>
+      </li>
+      <li>
+        <a href="float-basic.html">Basic Float Layout</a>
+        <p>An ordinary layout built with float techniques only. Not responsive at all. Compare it with <a href="media-queries-basic.html">Basic Media Queries</a>, which has the same content.</p>
+      </li>
+      <li>
+        <a href="float-responsive.html">Responsive Float Layout</a>
+        <p>A page made as responsive as possible in the old style, with float techniques only. Compare it with <a href="flexbox-layout.html">Flexbox Layout</a> and <a href="grid-layout.html">Grid Layout</a>, which have the same content.</p>
+      </li>
+    </ul>
+
+    <h2>Media queries</h2>
+    <ul>
+      <li>
+        <a href="media-queries-basic.html">Basic Media Queries</a>
+        <p>Shows how adding media queries to a page affects its responsiveness. Compare it with <a href="float-basic.html">Basic Float Layout</a>, which has the same content.</p>
+      </li>
+      <li>
+        <a href="media-queries-sidebar.html">Media Queries with a Collapsible Sidebar</a>
+        <p>Shows how a layout based on media queries reacts to a sidebar. Compare it with <a href="container-queries.html">Container Size Queries</a>, which has the same content, and notice how the layout changes when you open and close the sidebar.</p>
+      </li>
+    </ul>
+
+    <h2>Flexbox and Grid</h2>
+    <ul>
+      <li>
+        <a href="flexbox-layout.html">Flexbox Layout</a>
+        <p>Shows the layout built with Flexbox. Compare it with <a href="float-responsive.html">Responsive Float Layout</a> and <a href="grid-layout.html">Grid Layout</a>, which have the same content.</p>
+      </li>
+      <li>
+        <a href="grid-layout.html">Grid Layout</a>
+        <p>Shows the layout built with CSS Grid. Compare it with <a href="float-responsive.html">Responsive Float Layout</a> and <a href="flexbox-layout.html">Flexbox Layout</a>, which have the same content.</p>
+      </li>
+    </ul>
+
+    <h2>Container Size Queries</h2>
+    <ul>
+      <li>
+        <a href="container-queries.html">Container Size Queries</a>
+        <p>Shows how container size queries affect the layout. Compare it with <a href="media-queries-sidebar.html">Media Queries with a Collapsible Sidebar</a>, which has the same content, and notice how the layout changes when you open and close the sidebar.</p>
+      </li>
+    </ul>
+
+    <h2>Fluid Typography</h2>
+    <ul>
+      <li>
+        <a href="fluid-typography.html">Fluid Typography</a>
+        <p>Adds a font size that grows with the width of the column. Compare it with <a href="container-queries.html">Container Size Queries</a> and <a href="media-queries-sidebar.html">Media Queries with a Collapsible Sidebar</a>, which have the same content.</p>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Group 1 &middot; Information Architecture &amp; Web Usability 26/27.</p>
+  </footer>
+
+</body>
+</html>

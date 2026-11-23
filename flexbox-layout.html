@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flexbox Layout</title>
+  <meta name="description" content="Page description">
+  <meta name="theme-color" content="#FF00FF">
+  <style>
+:root {
+  --row: clamp(9rem, 15vw, 17rem);
+  --gap: clamp(0.5rem, 1.2vw, 1.25rem);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f2ed;
+  color: #222;
+  padding: 2rem clamp(1rem, 3vw, 3rem) 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-header {
+  max-width: 100rem;
+  margin: 0 auto clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: clamp(1rem, 2vw, 1.5rem);
+  text-align: center;
+  border-bottom: 0.125rem solid #222;
+}
+
+.page-header h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  letter-spacing: -0.04em;
+}
+
+.page-header p {
+  margin-top: 0.4rem;
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #a13b25;
+}
+
+.newspaper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+
+.row-top,
+.row-middle {
+  min-height: calc(2 * var(--row) + var(--gap));
+}
+
+.row-bottom {
+  min-height: var(--row);
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.flex-column > .tile {
+  flex: 1 1 auto;
+  min-height: var(--row);
+}
+
+.featured {
+  flex: 8 1 0;
+  min-width: min(100%, 24rem);
+  min-height: calc(2 * var(--row) + var(--gap));
+}
+
+.secondary {
+  flex: 4 1 0;
+  min-width: min(100%, 16rem);
+}
+
+.column-left {
+  flex: 3 1 0;
+  min-width: min(100%, 14rem);
+}
+
+.wide {
+  flex: 6 1 0;
+  min-width: min(100%, 22rem);
+}
+
+.vertical {
+  flex: 3 1 0;
+  min-width: min(100%, 14rem);
+}
+
+.row-bottom .tile {
+  flex: 4 1 0;
+  min-width: min(100%, 16rem);
+}
+
+.tile {
+  position: relative;
+  overflow: hidden;
+  background-color: #ddd;
+}
+
+.tile img {
+  transition: transform 0.5s ease;
+}
+
+.tile:hover img {
+  transform: scale(1.05);
+}
+
+.category {
+  display: inline-block;
+  color: #a13b25;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.65rem;
+}
+
+.tile h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.8rem);
+  line-height: 1.15;
+  margin-bottom: 0.65rem;
+}
+
+.tile p {
+  font-size: clamp(0.75rem, 1vw, 0.95rem);
+  line-height: 1.6;
+  color: #666;
+}
+
+.featured {
+  color: white;
+}
+
+.featured::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.05) 75%
+  );
+}
+
+.featured .overlay {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: clamp(1rem, 3vw, 3rem);
+}
+
+.featured .category {
+  color: #f4b58b;
+}
+
+.featured h2 {
+  font-size: clamp(1.8rem, 3.5vw, 3.5rem);
+  max-width: 90%;
+}
+
+.featured p {
+  color: #eee;
+  max-width: 80%;
+  margin-bottom: 1rem;
+}
+
+.author {
+  font-size: 0.75rem;
+  color: #ddd;
+}
+
+.secondary,
+.small,
+.wide,
+.vertical,
+.lifestyle,
+.technology,
+.last {
+  display: flex;
+  flex-direction: column;
+}
+
+.secondary img,
+.small img,
+.wide img,
+.vertical img,
+.lifestyle img,
+.technology img,
+.last img {
+  flex: 1 1 0;
+  height: auto;
+  min-height: clamp(6rem, 10vw, 10rem);
+}
+
+.secondary img,
+.wide img,
+.vertical img {
+  min-height: clamp(9rem, 16vw, 18rem);
+}
+
+.tile-content {
+  flex: 0 0 auto;
+  padding: clamp(0.75rem, 1.5vw, 1.5rem);
+  background-color: #fff;
+}
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #252525;
+  color: white;
+  padding: clamp(1rem, 2vw, 2rem);
+}
+
+.quote .category {
+  align-self: flex-start;
+  color: #f4b58b;
+}
+
+.quote blockquote {
+  font-family: Georgia, serif;
+  font-size: clamp(1rem, 1.6vw, 1.5rem);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.quote p {
+  color: #bbb;
+  margin-top: 1rem;
+}
+
+.site-footer {
+  max-width: 100rem;
+  margin: 3rem auto 0;
+  padding: 3rem 1rem;
+  text-align: center;
+  border-top: 0.125rem solid #222;
+}
+
+.site-footer p {
+  color: #777;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.site-footer a {
+  text-decoration: underline;
+}
+
+.resizer {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.resizer-frame {
+  flex: 0 1 auto;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+}
+
+.resizer-sidebar {
+  flex: 1 0 2rem;
+  background: #2b2b2b;
+  border-left: 0.75rem solid #555;
+  cursor: ew-resize;
+  touch-action: none;
+}
+
+.resizer-sidebar:hover,
+.is-dragging .resizer-sidebar {
+  border-left-color: #a13b25;
+}
+
+.is-dragging .resizer-frame {
+  pointer-events: none;
+}
+
+.is-dragging {
+  cursor: ew-resize;
+  user-select: none;
+}
+  </style>
+</head>
+
+<body>
+
+  <header class="page-header">
+    <h1>G1 Newspaper</h1>
+    <p>Flexbox Layout</p>
+  </header>
+
+  <main class="newspaper">
+
+    <div class="flex-row row-top">
+      <article class="tile featured">
+        <img
+          src="assets/img/mountain-lake.jpg"
+          alt="Turquoise Mountain Lake with a Wooden Boat"
+          decoding="async"
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=800&fit=crop&q=80'"
+        >
+        <div class="overlay">
+          <span class="category">TRAVEL</span>
+          <h2>Turquoise Mountain Lake with a Wooden Boat</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <span class="author">By XYZ · 8 min read</span>
+        </div>
+      </article>
+
+      <article class="tile secondary">
+        <img
+          src="assets/img/city-street.jpg"
+          alt="Busy City Street Between Tall Skyscrapers"
+          decoding="async"
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&h=800&fit=crop&q=80'"
+        >
+        <div class="tile-content">
+          <span class="category">ARCHITECTURE</span>
+          <h2>Busy City Street Between Tall Skyscrapers</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Vivamus consequat, augue vitae volutpat.
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <div class="flex-row row-middle">
+      <div class="flex-column column-left">
+        <article class="tile small">
+          <img
+            src="assets/img/forest-path.jpg"
+            alt="Dirt Path Through a Sunlit Forest"
+            loading="lazy"
+            decoding="async"
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=800&fit=crop&q=80'"
+          >
+          <div class="tile-content">
+            <span class="category">ENVIRONMENT</span>
+            <h2>Dirt Path Through a Sunlit Forest</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </article>
+
+        <article class="tile quote">
+          <span class="category">OPINION</span>
+          <blockquote>
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio."
+          </blockquote>
+          <p>A Different Perspective</p>
+        </article>
+      </div>
+
+      <article class="tile wide">
+        <img
+          src="assets/img/city-skyline.jpg"
+          alt="Downtown Skyline Along the Lakeshore"
+          loading="lazy"
+          decoding="async"
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&h=800&fit=crop&q=80'"
+        >
+        <div class="tile-content">
+          <span class="category">CULTURE</span>
+          <h2>Downtown Skyline Along the Lakeshore</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+          </p>
+        </div>
+      </article>
+
+      <article class="tile vertical">
+        <img
+          src="assets/img/mountain-clouds.jpg"
+          alt="Mountain Peaks Above a Sea of Clouds at Sunrise"
+          loading="lazy"
+          decoding="async"
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&q=80'"
+        >
+        <div class="tile-content">
+          <span class="category">ADVENTURE</span>
+          <h2>Mountain Peaks Above a Sea of Clouds at Sunrise</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nulla facilisi. Cras non velit nec nisi vulputate.
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <div class="flex-row row-bottom">
+      <article class="tile lifestyle">
+        <img
+          src="assets/img/coffee-toast.jpg"
+          alt="Friends Toasting with Cups of Latte"
+          loading="lazy"
+          decoding="async"
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&h=800&fit=crop&q=80'"
+        >
+        <div class="tile-content">
+          <span class="category">LIFESTYLE</span>
+          <h2>Friends Toasting with Cups of Latte</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Sed ut perspiciatis unde omnis iste natus error.
+          </p>
+        </div>
+      </article>
+
+      <article class="tile technology">
+        <img
+          src="assets/img/laptop-desk.jpg"
+          alt="Laptop on a Minimal Wooden Desk"
+          loading="lazy"
+          decoding="async"
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1200&h=800&fit=crop&q=80'"
+        >
+        <div class="tile-content">
+          <span class="category">TECHNOLOGY</span>
+          <h2>Laptop on a Minimal Wooden Desk</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Quisque volutpat condimentum velit.
+          </p>
+        </div>
+      </article>
+
+      <article class="tile last">
+        <img
+          src="assets/img/white-bicycle.jpg"
+          alt="White Bicycle Against a Dark Wall"
+          loading="lazy"
+          decoding="async"
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=1200&h=800&fit=crop&q=80'"
+        >
+        <div class="tile-content">
+          <span class="category">PHOTOGRAPHY</span>
+          <h2>White Bicycle Against a Dark Wall</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Donec quam felis, ultricies nec.
+          </p>
+        </div>
+      </article>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Group 1 &middot; Information Architecture &amp; Web Usability 26/27.</p>
+    <p>Photos from <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>, used under the <a href="https://unsplash.com/license" target="_blank" rel="noopener">Unsplash License</a>.</p>
+  </footer>
+
+  <script>
+    (function () {
+      if (window.self !== window.top) return;
+
+      document.body.className = 'resizer';
+      document.body.innerHTML =
+        '<iframe class="resizer-frame" title="Page preview"></iframe>' +
+        '<div class="resizer-sidebar"></div>';
+
+      var frame = document.querySelector('.resizer-frame');
+      var sidebar = document.querySelector('.resizer-sidebar');
+
+      frame.src = location.pathname + '?frame';
+
+      sidebar.addEventListener('pointerdown', function (event) {
+        sidebar.setPointerCapture(event.pointerId);
+        document.body.classList.add('is-dragging');
+      });
+
+      sidebar.addEventListener('pointermove', function (event) {
+        if (!sidebar.hasPointerCapture(event.pointerId)) return;
+        frame.style.width = Math.max(320, event.clientX) + 'px';
+      });
+
+      sidebar.addEventListener('pointerup', function () {
+        document.body.classList.remove('is-dragging');
+      });
+    })();
+  </script>
+
+</body>
+</html>

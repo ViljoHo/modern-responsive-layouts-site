@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Responsive Float Layout</title>
+  <meta name="description" content="Page description" />
+  <meta name="keywords" content="newspaper, news, culture, lifestyle, travel" />
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f4f2ed;
+  color: #222;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  padding: 2rem 2% 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-header {
+  min-width: 60rem;
+  max-width: 90rem;
+  margin: 0 auto 1.5rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  border-bottom: 0.125rem solid #222;
+}
+
+.page-header h1 {
+  font-family: Georgia, serif;
+  font-size: 3.5rem;
+  letter-spacing: -0.04em;
+}
+
+.page-header p {
+  margin-top: 0.4em;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #a13b25;
+}
+
+.newspaper {
+  min-width: 60rem;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.row {
+  overflow: hidden;
+  background: #fff;
+  margin-bottom: 1rem;
+}
+
+.article {
+  float: left;
+  display: inline;
+  overflow: hidden;
+  position: relative;
+  padding: 0.4%;
+  background: #fff;
+}
+
+.article-content {
+  padding: 1em;
+}
+
+.category {
+  display: block;
+  color: #a13b25;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.6em;
+}
+
+.article h2 {
+  font-family: Georgia, serif;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  margin-bottom: 0.4em;
+}
+
+.article p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+.article:hover h2 {
+  color: #a13b25;
+}
+
+.featured {
+  width: 65.8%;
+  color: #fff;
+}
+
+.secondary {
+  width: 32.5%;
+}
+
+.featured .overlay {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2em;
+  background: #000;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.featured .category {
+  color: #f4b58b;
+}
+
+.featured h2 {
+  font-size: 2.4rem;
+  width: 90%;
+}
+
+.featured:hover h2 {
+  color: #fff;
+}
+
+.featured p {
+  color: #eee;
+  width: 85%;
+  margin-bottom: 1em;
+}
+
+.featured small {
+  font-size: 0.75rem;
+  color: #ddd;
+}
+
+.small,
+.vertical {
+  width: 24.15%;
+}
+
+.wide {
+  width: 49.2%;
+}
+
+.row-bottom .article {
+  width: 24.15%;
+}
+
+.quote {
+  background: #252525;
+  color: #fff;
+  padding-bottom: 1000em;
+  margin-bottom: -1000em;
+}
+
+.quote .category,
+.quote blockquote,
+.quote .quote-source {
+  margin-left: 1.2em;
+  margin-right: 1.2em;
+}
+
+.quote .category {
+  margin-top: 1.5em;
+  color: #f4b58b;
+}
+
+.quote blockquote p {
+  font-family: Georgia, serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.quote .quote-source {
+  color: #bbb;
+  margin-top: 1em;
+}
+
+.footer {
+  clear: both;
+  min-width: 60rem;
+  max-width: 90rem;
+  margin: 2rem auto 0;
+  padding: 3rem 0;
+  text-align: center;
+  border-top: 0.125rem solid #222;
+}
+
+.footer p {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 0.5em;
+}
+
+.footer a {
+  text-decoration: underline;
+}
+
+.resizer {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.resizer-frame {
+  flex: 0 1 auto;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+}
+
+.resizer-sidebar {
+  flex: 1 0 2rem;
+  background: #2b2b2b;
+  border-left: 0.75rem solid #555;
+  cursor: ew-resize;
+  touch-action: none;
+}
+
+.resizer-sidebar:hover,
+.is-dragging .resizer-sidebar {
+  border-left-color: #a13b25;
+}
+
+.is-dragging .resizer-frame {
+  pointer-events: none;
+}
+
+.is-dragging {
+  cursor: ew-resize;
+  user-select: none;
+}
+  </style>
+</head>
+
+<body>
+
+  <div id="header" class="page-header">
+    <h1>G1 Newspaper</h1>
+    <p>Float Layout</p>
+  </div>
+
+  <div id="newspaper" class="newspaper">
+
+    <div class="row row-top">
+
+      <div class="article featured">
+        <img src="assets/img/mountain-lake.jpg"
+             width="1200" height="800"
+             alt="Turquoise Mountain Lake with a Wooden Boat" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=800&fit=crop&q=80'" />
+
+        <div class="overlay">
+          <span class="category">TRAVEL</span>
+          <h2>Turquoise Mountain Lake with a Wooden Boat</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <small>By XYZ &middot; 8 min read</small>
+        </div>
+      </div>
+
+      <div class="article secondary">
+        <img src="assets/img/city-street.jpg"
+             width="600" height="400"
+             alt="Busy City Street Between Tall Skyscrapers" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&h=800&fit=crop&q=80'" />
+
+        <div class="article-content">
+          <span class="category">ARCHITECTURE</span>
+          <h2>Busy City Street Between Tall Skyscrapers</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row row-middle">
+
+      <div class="article small">
+        <img src="assets/img/forest-path.jpg"
+             width="600" height="400"
+             alt="Dirt Path Through a Sunlit Forest" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=800&fit=crop&q=80'" />
+
+        <div class="article-content">
+          <span class="category">ENVIRONMENT</span>
+          <h2>Dirt Path Through a Sunlit Forest</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+
+      <div class="article wide">
+        <img src="assets/img/city-skyline.jpg"
+             width="900" height="600"
+             alt="Downtown Skyline Along the Lakeshore" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&h=800&fit=crop&q=80'" />
+
+        <div class="article-content">
+          <span class="category">CULTURE</span>
+          <h2>Downtown Skyline Along the Lakeshore</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+
+      <div class="article vertical">
+        <img src="assets/img/mountain-clouds.jpg"
+             width="600" height="400"
+             alt="Mountain Peaks Above a Sea of Clouds at Sunrise" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&q=80'" />
+
+        <div class="article-content">
+          <span class="category">ADVENTURE</span>
+          <h2>Mountain Peaks Above a Sea of Clouds at Sunrise</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row row-bottom">
+
+      <div class="article quote">
+        <span class="category">OPINION</span>
+        <blockquote>
+          <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio."</p>
+        </blockquote>
+        <p class="quote-source">A Different Perspective</p>
+      </div>
+
+      <div class="article lifestyle">
+        <img src="assets/img/coffee-toast.jpg"
+             width="600" height="400"
+             alt="Friends Toasting with Cups of Latte" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&h=800&fit=crop&q=80'" />
+
+        <div class="article-content">
+          <span class="category">LIFESTYLE</span>
+          <h2>Friends Toasting with Cups of Latte</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+
+      <div class="article technology">
+        <img src="assets/img/laptop-desk.jpg"
+             width="600" height="400"
+             alt="Laptop on a Minimal Wooden Desk" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1200&h=800&fit=crop&q=80'" />
+
+        <div class="article-content">
+          <span class="category">TECHNOLOGY</span>
+          <h2>Laptop on a Minimal Wooden Desk</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+
+      <div class="article last">
+        <img src="assets/img/white-bicycle.jpg"
+             width="600" height="400"
+             alt="White Bicycle Against a Dark Wall" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=1200&h=800&fit=crop&q=80'" />
+
+        <div class="article-content">
+          <span class="category">PHOTOGRAPHY</span>
+          <h2>White Bicycle Against a Dark Wall</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="footer" class="footer">
+    <p>&copy; 2026 Group 1 &middot; Information Architecture &amp; Web Usability 26/27.</p>
+    <p>Photos from <a href="https://unsplash.com">Unsplash</a>, used under the <a href="https://unsplash.com/license">Unsplash License</a>.</p>
+  </div>
+
+  <script>
+    (function () {
+      if (window.self !== window.top) return;
+
+      document.body.className = 'resizer';
+      document.body.innerHTML =
+        '<iframe class="resizer-frame" title="Page preview"></iframe>' +
+        '<div class="resizer-sidebar"></div>';
+
+      var frame = document.querySelector('.resizer-frame');
+      var sidebar = document.querySelector('.resizer-sidebar');
+
+      frame.src = location.pathname + '?frame';
+
+      sidebar.addEventListener('pointerdown', function (event) {
+        sidebar.setPointerCapture(event.pointerId);
+        document.body.classList.add('is-dragging');
+      });
+
+      sidebar.addEventListener('pointermove', function (event) {
+        if (!sidebar.hasPointerCapture(event.pointerId)) return;
+        frame.style.width = Math.max(320, event.clientX) + 'px';
+      });
+
+      sidebar.addEventListener('pointerup', function () {
+        document.body.classList.remove('is-dragging');
+      });
+    })();
+  </script>
+
+</body>
+</html>
